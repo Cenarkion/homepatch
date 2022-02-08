@@ -1,2 +1,44 @@
----
-# tasks file for homepatch
+- name: Install updates and restart
+  block:
+    - name: Update Server packages
+      dnf:
+        update_cache: yes
+        name: "*"
+        state: latest
+
+    - name: Check to see if we need a reboot
+      command: needs-restarting -r
+      register: result
+      ignore_errors: yes
+
+    - name: Reboot the server if needed
+      reboot:
+      when: result.rc == 1
+
+  when: 
+    - ansible_facts['distribution'] == "RedHat"
+    - ansible_facts['distribution_major_version'] == '8'
+
+- name: Install updates and restart
+  block:
+    - name: Set current kernel fact
+      set_fact:
+        current_kernel: ansible_facts['ansible_kernel']
+
+    - name: Update package cache
+      package:
+        update_cache: yes
+
+    - name: Update local system
+      package:
+        upgrade: yes
+
+    - name: Get updated kernel (if changed)
+      shell: uname -r
+      register: newshell
+
+    - name: Reboot if needed (command host, Ill die here!)
+      command: shutdown -r now "Ansible updates triggered"
+      when: ansible_facts['current_shell'] != newshell.stdout
+      
+  when: ansible_facts['distribution'] == "Archlinux"
