@@ -1,0 +1,6 @@
+---
+- hosts: both
+  gather_facts: true
+  become: true
+  roles: 
+    - role: update
