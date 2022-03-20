@@ -16,8 +16,8 @@
       when: result.rc == 1
 
   when: 
-    - ansible_facts['distribution'] == "RedHat"
-    - ansible_facts['distribution_major_version'] == '8'
+    - ansible_facts['distribution'] == "RedHat" or ansible_facts['distribution'] == "Fedora"
+    - ansible_facts['distribution_major_version'] == '8' or ansible_facts['distribution_major_version'] == '35'
 
 - name: Install updates and restart
   block:
