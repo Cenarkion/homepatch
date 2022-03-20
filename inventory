@@ -1,4 +1,4 @@
 
 [both]
 fedsrv.fritz.box ansible_port=6060
-localhost
+localhost ansible_connection=local
