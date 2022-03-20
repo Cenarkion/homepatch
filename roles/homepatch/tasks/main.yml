@@ -7,7 +7,7 @@
         state: latest
 
     - name: Check to see if we need a reboot
-      command: needs-restarting -r
+      command: dnf needs-restarting -r
       register: result
       ignore_errors: yes
 
