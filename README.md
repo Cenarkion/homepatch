@@ -12,7 +12,7 @@ Caters for RedHat, Fedora & Arch systems, includes patching and bouncing the con
 Role Variables
 --------------
 
-Nothing exciting here
+Nothing exciting here.
 
 Dependencies
 ------------
@@ -30,6 +30,7 @@ Including an example of how to use your role (for instance, with variables passe
   become: true
   roles:
     - role: homepatch
+
 
 License
 -------
