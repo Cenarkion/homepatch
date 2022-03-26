@@ -7,7 +7,7 @@ Requirements
 ------------
 
 Ansible 2.6+
-Caters for RedHat & Arch systems, includes patching and bouncing the control node (arch) so the play is never expected to close cleanly
+Caters for RedHat, Fedora & Arch systems, includes patching and bouncing the control node (arch) so the play is never expected to close cleanly
 
 Role Variables
 --------------
@@ -24,9 +24,12 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+---
+- hosts: both
+  gather_facts: true
+  become: true
+  roles:
+    - role: homepatch
 
 License
 -------
