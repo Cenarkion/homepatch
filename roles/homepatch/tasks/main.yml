@@ -39,6 +39,6 @@
 
     - name: Reboot if needed (command host, Ill die here!)
       command: shutdown -r now "Ansible updates triggered"
-      when: ansible_facts['current_shell'] != newshell.stdout
+      when: ansible_facts['current_kernel'] != newshell.stdout
       
   when: ansible_facts['distribution'] == "Archlinux"
