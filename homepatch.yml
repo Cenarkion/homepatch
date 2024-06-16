@@ -1,5 +1,5 @@
 ---
-- hosts: both
+- hosts: all
   gather_facts: true
   become: true
   roles: 
